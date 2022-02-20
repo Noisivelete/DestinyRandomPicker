@@ -45,6 +45,16 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
+        boolean caos=false;
+        String y_n="";
+        System.out.println("¿Activar modo Caos [Cualquier exótico, incluso si no da beneficio, puede salir para cualquier subclase]? (y/n):");
+        y_n=keyboard.nextLine();
+        if(y_n.toLowerCase().equals("y")){
+            System.out.println("Modo Caos activado.");
+            caos=true;
+        } else {
+            System.out.println("Modo Caos desactivado.");
+        }
         for(int i=0;i<6;i++){
             int clase;
             do{
@@ -71,7 +81,7 @@ public class Main {
             do{
                 int armor=r.nextInt(clase_.getArmaduras().size());
                 armadura=clase_.getArmadura(armor);
-            } while(!armadura.puedeUsarlo(subclase_));
+            } while(!armadura.puedeUsarlo(subclase_) && !caos);
             
             Jugador j=new Jugador(i+1, arma, armadura, clase_, subclase_);
             jugadores[i]=j;
@@ -84,7 +94,7 @@ public class Main {
         }
         
         System.out.println("========= Raid aleatoria generada: ==========\n");
-        System.out.println("Raid: "+raids[raid]);
+        System.out.println("Raid: "+data.getRaid(raid).getNombre());
         for(int i=0;i<6;i++){
             System.out.println(jugadores[i]);
         }

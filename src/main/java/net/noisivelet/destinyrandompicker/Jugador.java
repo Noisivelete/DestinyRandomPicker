@@ -46,8 +46,8 @@ public class Jugador {
                 + "\tClase: "+clase.getNombre()+"\n";
         String prefijo_subclase=subclase.getPrefix() == null? clase.getPrefijo():subclase.getPrefix();
         resultado+="\tSubclase: "+prefijo_subclase+" "+subclase.getNombre()+"\n"
-                + "\tExótico (Armadura): "+armadura.nombre+" ("+armadura.id+")\n"
-                + "\tExótico (Arma): "+arma.nombre+" ("+arma.id+")";
+                + "\tExótico (Armadura): "+armadura.nombre+"\n"
+                + "\tExótico (Arma): "+arma.nombre;
         return resultado;
     }
 }

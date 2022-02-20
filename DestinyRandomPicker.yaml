@@ -33,7 +33,7 @@ clases:
     prefix: null
   - id: 9
     nombre: "Dominasombras"
-    prefix: null
+    prefix: "Estasis:"
   armaduras:
   - id: 0
     nombre: "Cráneo del Funesto Ahamkara"
