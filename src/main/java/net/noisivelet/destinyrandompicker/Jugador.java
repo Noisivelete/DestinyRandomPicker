@@ -16,32 +16,38 @@
  */
 package net.noisivelet.destinyrandompicker;
 
+import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
+import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
+import net.noisivelet.destinyrandompicker.Data.Clase;
+import net.noisivelet.destinyrandompicker.Data.Subclase;
+
 /**
  *
  * @author Francis
  */
 public class Jugador {
-    public final int id, clase, subclase, exotico_armadura, exotico;
+    public int id;
+    public ArmaExótica arma;
+    public ArmaduraExótica armadura;
+    public Clase clase;
+    public Subclase subclase;
 
-    public Jugador(int id, int clase, int subclase, int exotico_armadura, int exotico) {
+    public Jugador(int id, ArmaExótica arma, ArmaduraExótica armadura, Clase clase, Subclase subclase) {
         this.id = id;
+        this.arma = arma;
+        this.armadura = armadura;
         this.clase = clase;
         this.subclase = subclase;
-        this.exotico_armadura = exotico_armadura;
-        this.exotico = exotico;
     }
     
     @Override
     public String toString(){
         String resultado="Jugador #"+id+":\n"
-                + "\tClase: "+Main.clases[clase]+"\n";
-        String prefijo_subclase=Main.prefijos_subclases[clase];
-        if(subclase == Main.subclases[clase].length-1){//Estasis
-            prefijo_subclase="Estasis:";
-        }
-        resultado+="\tSubclase: "+prefijo_subclase+" "+Main.subclases[clase][subclase]+"\n"
-                + "\tExótico (Armadura): "+Main.exoticos_clases[clase][exotico_armadura]+" ("+exotico_armadura+")\n"
-                + "\tExótico (Arma): "+Main.exoticos[exotico]+" ("+exotico+")";
+                + "\tClase: "+clase.getNombre()+"\n";
+        String prefijo_subclase=subclase.getPrefix() == null? clase.getPrefijo():subclase.getPrefix();
+        resultado+="\tSubclase: "+prefijo_subclase+" "+subclase.getNombre()+"\n"
+                + "\tExótico (Armadura): "+armadura.nombre+" ("+armadura.id+")\n"
+                + "\tExótico (Arma): "+arma.nombre+" ("+arma.id+")";
         return resultado;
     }
 }

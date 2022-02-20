@@ -50,7 +50,7 @@ public class ArmaduraExótica extends Exótico{
     public boolean puedeUsarlo(Subclase subclase){
         if(hasGlobalScope) return true;
         
-        return subclassScope.contains(id);
+        return subclassScope.contains(subclase.getId());
     }
 
     public boolean isHasGlobalScope() {

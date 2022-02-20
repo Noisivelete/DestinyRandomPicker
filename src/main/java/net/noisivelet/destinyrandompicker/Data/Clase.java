@@ -28,18 +28,18 @@ public class Clase {
     private String nombre;
     private String prefijo;
     private List<Subclase> subclases;
-    private List<ArmaduraExótica> armadura;
+    private List<ArmaduraExótica> armaduras;
 
     public Clase(){
         
     }
     
-    public Clase(String nombre, String prefijo, List<Subclase> subclases, List<ArmaduraExótica> armadura) {
+    public Clase(String nombre, String prefijo, List<Subclase> subclases, List<ArmaduraExótica> armaduras) {
         id=id_c++;
         this.nombre = nombre;
         this.prefijo = prefijo;
         this.subclases = subclases;
-        this.armadura = armadura;
+        this.armaduras = armaduras;
     }
 
     public int getId() {
@@ -69,17 +69,25 @@ public class Clase {
     public List<Subclase> getSubclases() {
         return subclases;
     }
+    
+    public Subclase getSubclase(int id){
+        return subclases.get(id);
+    }
 
     public void setSubclases(List<Subclase> subclases) {
         this.subclases = subclases;
     }
 
-    public List<ArmaduraExótica> getArmadura() {
-        return armadura;
+    public List<ArmaduraExótica> getArmaduras() {
+        return armaduras;
+    }
+    
+    public ArmaduraExótica getArmadura(int id){
+        return armaduras.get(id);
     }
 
-    public void setArmadura(List<ArmaduraExótica> armadura) {
-        this.armadura = armadura;
+    public void setArmaduras(List<ArmaduraExótica> armaduras) {
+        this.armaduras = armaduras;
     }
     
     

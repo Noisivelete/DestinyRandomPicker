@@ -16,6 +16,7 @@
  */
 package net.noisivelet.destinyrandompicker.Data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +26,7 @@ import net.noisivelet.destinyrandompicker.Data.ArmaExótica.Tipo;
  *
  * @author Francis
  */
+@JsonIgnoreProperties({ "numClases", "numRaids", "numArmas" })
 public class Datos {
     private List<Clase> clases;
     private List<ArmaExótica> armas;
@@ -67,6 +69,18 @@ public class Datos {
     
     public Raid getRaid(int index){
         return raids.get(index);
+    }
+    
+    public int getNumRaids(){
+        return raids.size();
+    }
+    
+    public int getNumArmas(){
+        return armas.size();
+    }
+
+    public int getNumClases(){
+        return clases.size();
     }
     
     public ArmaExótica getArma(int index){
