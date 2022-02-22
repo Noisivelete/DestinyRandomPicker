@@ -38,8 +38,6 @@ public class Main {
             System.out.println("Error cargando el archivo YAML. No se puede continuar.");
             return;
         }
-        data.getClase(0).getArmadura(0).setWeaponConditions(new Condition());
-        YAMLUtils.guardarYaml(data, "output.yaml");
         Random r=new Random();
         int raid=r.nextInt(data.getNumRaids());
         
