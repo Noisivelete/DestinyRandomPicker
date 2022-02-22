@@ -25,6 +25,8 @@ import java.util.List;
 public class ArmaduraExótica extends Exótico{
     private boolean hasGlobalScope; //True si esta armadura exótica se puede usar por cualquier subclase.
     private List<Integer> subclassScope; //Null si hasGlobalScope==true
+    private boolean hasGlobalWeaponScope; //True si esta armadura exótica se puede acompañar de cualquier arma exótica
+    private Condition weaponConditions; //Condiciones para poder usar un arma específica con esta armadura.
 
     public ArmaduraExótica(){
         super("");
@@ -41,6 +43,14 @@ public class ArmaduraExótica extends Exótico{
         hasGlobalScope=false;
         this.subclassScope=subclassScope;
     }
+
+    public ArmaduraExótica(String nombre, boolean hasGlobalScope, List<Integer> subclassScope, boolean hasGlobalWeaponScope, Condition weaponConditions) {
+        super(nombre);
+        this.hasGlobalScope = hasGlobalScope;
+        this.subclassScope = subclassScope;
+        this.hasGlobalWeaponScope = hasGlobalWeaponScope;
+        this.weaponConditions = weaponConditions;
+    }
     
     /**
      * Determina si la subclase pasada como parámetro obtiene algún tipo de beneficio por usar este exótico.
@@ -51,6 +61,17 @@ public class ArmaduraExótica extends Exótico{
         if(hasGlobalScope) return true;
         
         return subclassScope.contains(subclase.getId());
+    }
+    
+    /**
+     * Determina si el arma pasada como parámetro puede ser usada junto a este exótico.
+     * @param arma Arma a comprobar
+     * @return True si esta arma exótica puede ser usada junto a esta armadura, false si no.
+     */
+    public boolean puedeUsarlo(ArmaExótica arma){
+        if(hasGlobalWeaponScope) return true;
+        
+        return weaponConditions.fulfillsConditions(arma);
     }
 
     public boolean isHasGlobalScope() {
@@ -68,6 +89,21 @@ public class ArmaduraExótica extends Exótico{
     public void setSubclassScope(List<Integer> subclassScope) {
         this.subclassScope = subclassScope;
     }
-    
+
+    public boolean isHasGlobalWeaponScope() {
+        return hasGlobalWeaponScope;
+    }
+
+    public void setHasGlobalWeaponScope(boolean hasGlobalWeaponScope) {
+        this.hasGlobalWeaponScope = hasGlobalWeaponScope;
+    }
+
+    public Condition getWeaponConditions() {
+        return weaponConditions;
+    }
+
+    public void setWeaponConditions(Condition weaponConditions) {
+        this.weaponConditions = weaponConditions;
+    }
     
 }

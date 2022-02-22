@@ -21,6 +21,19 @@ package net.noisivelet.destinyrandompicker.Data;
  * @author Francis
  */
 public class Exótico {
+    public static enum Elemento{
+        SOLAR, VACIO, ARCO, ESTASIS, LUZ;
+        
+        public boolean esIgual(Elemento o){
+            if(o == null) return false;
+            if(o.equals(this)) return true;
+            
+            if(o.equals(Elemento.LUZ)){ //Luz implica que puede cambiar entre todos los elementos de luz.
+                return !this.equals(ESTASIS);
+            }
+            return false;
+        }
+    }
     private static int id_c=0;
     public final int id;
     public final String nombre;
