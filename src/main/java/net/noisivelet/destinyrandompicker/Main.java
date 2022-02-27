@@ -22,6 +22,7 @@ import java.util.Scanner;
 import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
 import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
 import net.noisivelet.destinyrandompicker.Data.Clase;
+import net.noisivelet.destinyrandompicker.Data.Condition;
 import net.noisivelet.destinyrandompicker.Data.Datos;
 import net.noisivelet.destinyrandompicker.Data.Subclase;
 
@@ -37,7 +38,6 @@ public class Main {
             System.out.println("Error cargando el archivo YAML. No se puede continuar.");
             return;
         }
-        
         Random r=new Random();
         int raid=r.nextInt(data.getNumRaids());
         
@@ -46,15 +46,29 @@ public class Main {
         
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
         boolean caos=false;
+        boolean permisivo=false;
         String y_n="";
-        System.out.println("¿Activar modo Caos [Cualquier exótico, incluso si no da beneficio, puede salir para cualquier subclase]? (y/n):");
+        System.out.println("¿Activar modo Caos [Cualquier exótico, incluso si no da beneficio, puede salir para cualquier subclase y armadura]? (y/n):");
         y_n=keyboard.nextLine();
         if(y_n.toLowerCase().equals("y")){
-            System.out.println("Modo Caos activado.");
+            System.out.println("Modo Caos activado. Modo Permisivo activado.");
             caos=true;
+            permisivo=true;
         } else {
             System.out.println("Modo Caos desactivado.");
+            y_n="";
+            System.out.println("¿Activar modo Permisivo [Cualquier arma exótica, incluso si no la beneficia, puede salir para cualquier armadura exótica]? (y/n):");
+            y_n=keyboard.nextLine();
+            if(y_n.toLowerCase().equals("y")){
+                System.out.println("Modo Permisivo activado.");
+                permisivo=true;
+            } else {
+                System.out.println("Modo Permisivo desactivado.");
+            }
         }
+        
+        
+        
         for(int i=0;i<6;i++){
             int clase;
             do{
@@ -66,22 +80,35 @@ public class Main {
             Clase clase_=data.getClase(clase);
             int subclase=r.nextInt(clase_.getSubclases().size());
             Subclase subclase_=clase_.getSubclase(subclase);
+            
+            ArmaduraExótica armadura;
+            do{
+                int armor=r.nextInt(clase_.getArmaduras().size());
+                armadura=clase_.getArmadura(armor);
+            } while(!armadura.puedeUsarlo(subclase_) && !caos);
+            
             ArmaExótica arma;
+            boolean armaduraIncompatible;
+            boolean armaNoUsable;
             do{
                 int exotico=r.nextInt(data.getNumArmas());
                 arma=data.getArma(exotico);
-            } while(!arma.isActivada() && !arma.isEsEspecial());
+                
+                armaNoUsable=(!arma.isActivada() && !arma.isEsEspecial());
+                
+                boolean subclaseCoincide=subclase_.getElemento().equals(arma.getElemento());
+                boolean noHayCoincidenciaSubclase=false;
+                if(armadura.getWeaponConditions() != null)
+                    noHayCoincidenciaSubclase=!subclaseCoincide && armadura.getWeaponConditions().subclassMatch;
+                
+                armaduraIncompatible=(!permisivo && (!armadura.puedeUsarlo(arma) || noHayCoincidenciaSubclase)); //Una armadura es incompatible si el modo permisivo está desactivado y el arma no cumple las condiciones de la armadura.
+            } while(armaNoUsable || armaduraIncompatible);
             
             if(armaEspecial == null){
                 if(arma.isEsEspecial()){
                     armaEspecial=arma;
                 }
             }
-            ArmaduraExótica armadura;
-            do{
-                int armor=r.nextInt(clase_.getArmaduras().size());
-                armadura=clase_.getArmadura(armor);
-            } while(!armadura.puedeUsarlo(subclase_) && !caos);
             
             Jugador j=new Jugador(i+1, arma, armadura, clase_, subclase_);
             jugadores[i]=j;

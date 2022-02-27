@@ -16,6 +16,8 @@
  */
 package net.noisivelet.destinyrandompicker.Data;
 
+import net.noisivelet.destinyrandompicker.Data.Exótico.Elemento;
+
 /**
  *
  * @author Francis
@@ -25,19 +27,21 @@ public class Subclase {
     private int id;
     private String nombre;
     private String prefix;
+    private Elemento elemento;
     
     public Subclase(){
         
     }
     
-    public Subclase(String nombre, String prefix) {
+    public Subclase(String nombre, String prefix, Elemento elemento) {
         id=id_c++;
         this.nombre = nombre;
         this.prefix = prefix;
+        this.elemento = elemento;
     }
     
-    public Subclase(String nombre){
-        this(nombre, null);
+    public Subclase(String nombre, Elemento elemento){
+        this(nombre, null, elemento);
     }
 
     public int getId() {
@@ -63,6 +67,12 @@ public class Subclase {
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
-    
-    
+
+    public Elemento getElemento() {
+        return elemento;
+    }
+
+    public void setElemento(Elemento elemento) {
+        this.elemento = elemento;
+    }
 }

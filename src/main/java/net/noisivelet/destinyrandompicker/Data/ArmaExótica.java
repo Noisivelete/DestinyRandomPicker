@@ -21,15 +21,26 @@ package net.noisivelet.destinyrandompicker.Data;
  * @author Francis
  */
 public class ArmaExótica extends Exótico{
-    public enum Tipo{
+    public enum Slot{
         CINETICA("Cinética"), ENERGETICA("Energética"), PESADA("Pesada");
         public final String nombre;
-        Tipo(String str){
+        Slot(String str){
             nombre=str;
         }
     }
     
+    public enum TipoMunicion{
+        PRIMARIA, ESPECIAL, PESADA;
+    }
+    
+    public enum Tipo{
+        SUBFUSIL, PISTOLA, CAÑON_MANO, ARCO, FUSIL_AUTO, FUSIL_EXPLORADOR, FUSIL_PULSOS, FUSIL_RASTREO, FUSIL_FUSION, FUSIL_FUSION_LINEAL, FUSIL_FRANCOTIRADOR, ESCOPETA, ESPADA, LANZAGRANADAS, LANZACOHETES, AMETRALLADORA
+    }
+    
+    private Slot slot;
     private Tipo tipo;
+    private TipoMunicion municion;
+    private Elemento elemento;
     private boolean esEspecial; //Armas especiales pueden salir como la única opción exótica del equipo: Por ejemplo, 6 brotes perfeccionados.
     private boolean activada; //Un arma desactivada no saldrá como opción individual, pero podrá salir como única opción si el arma está configurada como esEspecial.
 
@@ -37,9 +48,9 @@ public class ArmaExótica extends Exótico{
         super("");
     }
     
-    public ArmaExótica(String nombre, Tipo tipo, boolean esEspecial, boolean activada) {
+    public ArmaExótica(String nombre, Slot tipo, boolean esEspecial, boolean activada) {
         super(nombre);
-        this.tipo = tipo;
+        this.slot = tipo;
         this.esEspecial = esEspecial;
         this.activada = activada;
     }
@@ -60,6 +71,14 @@ public class ArmaExótica extends Exótico{
         this.activada = activada;
     }
 
+    public Slot getSlot() {
+        return slot;
+    }
+
+    public void setSlot(Slot slot) {
+        this.slot = slot;
+    }
+
     public Tipo getTipo() {
         return tipo;
     }
@@ -67,5 +86,20 @@ public class ArmaExótica extends Exótico{
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
-    
+
+    public TipoMunicion getMunicion() {
+        return municion;
+    }
+
+    public void setMunicion(TipoMunicion municion) {
+        this.municion = municion;
+    }
+
+    public Elemento getElemento() {
+        return elemento;
+    }
+
+    public void setElemento(Elemento elemento) {
+        this.elemento = elemento;
+    }
 }

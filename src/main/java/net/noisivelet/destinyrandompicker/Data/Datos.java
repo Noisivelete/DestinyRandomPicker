@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import net.noisivelet.destinyrandompicker.Data.ArmaExótica.Tipo;
+import net.noisivelet.destinyrandompicker.Data.ArmaExótica.Slot;
 
 /**
  *
@@ -90,44 +90,4 @@ public class Datos {
     public Clase getClase(int index){
         return clases.get(index);
     }
-    
-    static public Datos defaultValues(){
-        ArrayList<Raid> raids=new ArrayList<>();
-        ArrayList<ArmaExótica> armas=new ArrayList<>();
-        ArrayList<Clase> clases=new ArrayList<>();
-        
-        raids.add(new Raid("Cripta de la Piedra Profunda"));
-        raids.add(new Raid("Último Deseo"));
-        
-        armas.add(new ArmaExótica("Rey de las Ratas", Tipo.CINETICA, true, false));
-        armas.add(new ArmaExótica("Brote Perfeccionado", Tipo.CINETICA, true, true));
-        
-        ArrayList<Subclase> h_sub=new ArrayList<>();
-        ArrayList<ArmaduraExótica> h_arm=new ArrayList<>();
-        
-        h_sub.add(new Subclase("de Gracia"));
-        h_sub.add(new Subclase("del Hambre"));
-        h_sub.add(new Subclase("Dominasombras", "Estasis:"));
-        
-        h_arm.add(new ArmaduraExótica("Protocolo Fénix", Arrays.asList(0)));
-        h_arm.add(new ArmaduraExótica("Botas de Lunafacción"));
-        
-        clases.add(new Clase("Hechicero", "Armonización", h_sub, h_arm));
-        
-        ArrayList<Subclase> c_sub=new ArrayList<>();
-        ArrayList<ArmaduraExótica> c_arm=new ArrayList<>();
-        
-        c_sub.add(new Subclase("del Trampero"));
-        c_sub.add(new Subclase("del Foragido"));
-        c_sub.add(new Subclase("Fénix", "Estasis:"));
-        
-        c_arm.add(new ArmaduraExótica("Omnióculus", Arrays.asList(0,1,2)));
-        c_arm.add(new ArmaduraExótica("Zapateador"));
-        
-        clases.add(new Clase("Cazador", "Senda", c_sub, c_arm));
-        
-        Datos d=new Datos(raids, clases, armas);
-        return d;
-    }
-    
 }

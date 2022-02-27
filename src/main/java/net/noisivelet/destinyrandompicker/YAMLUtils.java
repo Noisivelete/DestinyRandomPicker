@@ -20,30 +20,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
-import net.noisivelet.destinyrandompicker.Data.ArmaExótica.Tipo;
-import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
-import net.noisivelet.destinyrandompicker.Data.Clase;
 import net.noisivelet.destinyrandompicker.Data.Datos;
-import net.noisivelet.destinyrandompicker.Data.Raid;
-import net.noisivelet.destinyrandompicker.Data.Subclase;
 
 /**
  *
  * @author Francis
  */
 public class YAMLUtils {
-    public static void escribirYaml(String output){
-        ObjectMapper mapper=new ObjectMapper(new YAMLFactory());
-        mapper.findAndRegisterModules();
-        try {
-            mapper.writeValue(new File(output), Datos.defaultValues());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    
     public static Datos getYaml(String input){
         ObjectMapper mapper=new ObjectMapper(new YAMLFactory());
         mapper.findAndRegisterModules();
@@ -52,6 +35,16 @@ public class YAMLUtils {
         } catch (Exception ex){
             ex.printStackTrace();
             return null;
+        }
+    }
+    
+    public static void guardarYaml(Datos datos, String output){
+        ObjectMapper mapper=new ObjectMapper(new YAMLFactory());
+        mapper.findAndRegisterModules();
+        try {
+            mapper.writeValue(new File(output), datos);
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 }
