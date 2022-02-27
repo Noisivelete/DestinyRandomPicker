@@ -17,16 +17,16 @@ clases:
     prefix: null
     elemento: "SOLAR"
   - id: 3
-    nombre: "del Caos"
-    prefix: null
+    nombre: "Bomba Nova: Cataclismo"
+    prefix: "Caminante del Vacío:"
     elemento: "VACIO"
   - id: 4
-    nombre: "de Fisión"
-    prefix: null
+    nombre: "Distorsión Nova"
+    prefix: "Caminante del Vacío:"
     elemento: "VACIO"
   - id: 5
-    nombre: "del Hambre"
-    prefix: null
+    nombre: "Bomba Nova: Vórtice"
+    prefix: "Caminante del Vacío:"
     elemento: "VACIO"
   - id: 6
     nombre: "de la Conducción"
@@ -324,16 +324,16 @@ clases:
     prefix: null
     elemento: "SOLAR"
   - id: 13
-    nombre: "del Trampero"
-    prefix: null
+    nombre: "Tiro en la Sombra: Trampa"
+    prefix: "Acechador Nocturno:"
     elemento: "VACIO"
   - id: 14
-    nombre: "del Aparecido"
-    prefix: null
+    nombre: "Filos espectrales"
+    prefix: "Acechador Nocturno:"
     elemento: "VACIO"
   - id: 15
-    nombre: "del Pionero"
-    prefix: null
+    nombre: "Tiro en la sombra: Carcaj de Moebius"
+    prefix: "Acechador Nocturno:"
     elemento: "VACIO"
   - id: 16
     nombre: "del Guerrero"
@@ -620,16 +620,12 @@ clases:
     prefix: null
     elemento: "SOLAR"
   - id: 23
-    nombre: "del Protector"
-    prefix: null
+    nombre: "Amparo del Alba"
+    prefix: "Centinela:"
     elemento: "VACIO"
   - id: 24
-    nombre: "del Comandante"
-    prefix: null
-    elemento: "VACIO"
-  - id: 25
-    nombre: "del Agresor"
-    prefix: null
+    nombre: "Escudo Centinela"
+    prefix: "Centinela:"
     elemento: "VACIO"
   - id: 26
     nombre: "del Terremoto"
