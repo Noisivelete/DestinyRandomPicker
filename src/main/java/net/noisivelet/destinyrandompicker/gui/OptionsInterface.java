@@ -440,8 +440,8 @@ public class OptionsInterface extends javax.swing.JFrame {
         
         System.out.println("\n"+modoCaos+", "+modoPermisivo);
         
-        //GeneratedRaidJFrame resultado=Main.generarRaid(clases, modoCaos, modoPermisivo);
-        //resultado.setVisible(true);
+        GeneratedRaidJFrame resultado=Main.generarRaid(clases, modoCaos, modoPermisivo);
+        resultado.setVisible(true);
     }//GEN-LAST:event_generarRaidActionPerformed
 
     /**

@@ -32,13 +32,9 @@ import net.noisivelet.destinyrandompicker.gui.GeneratedRaidJFrame;
  * @author Francis
  */
 public class Main {
-    public static void main(String... args){
-        String yaml_location=args.length>0?args[0]:"DestinyRandomPicker.yaml";
-        Datos data=YAMLUtils.getYaml(yaml_location);
-        if(data == null){
-            System.out.println("Error cargando el archivo YAML. No se puede continuar.");
-            return;
-        }
+    static Datos data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
+    
+    public static GeneratedRaidJFrame generarRaid(int[] clases, boolean caos, boolean permisivo){
         Random r=new Random();
         int raid=r.nextInt(data.getNumRaids());
         
@@ -46,30 +42,7 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
-        boolean caos=false;
-        boolean permisivo=false;
-        String y_n="";
-        System.out.println("¿Activar modo Caos [Cualquier exótico, incluso si no da beneficio, puede salir para cualquier subclase y armadura]? (y/n):");
-        y_n=keyboard.nextLine();
-        if(y_n.toLowerCase().equals("y")){
-            System.out.println("Modo Caos activado. Modo Permisivo activado.");
-            caos=true;
-            permisivo=true;
-        } else {
-            System.out.println("Modo Caos desactivado.");
-            y_n="";
-            System.out.println("¿Activar modo Permisivo [Cualquier arma exótica, incluso si no la beneficia, puede salir para cualquier armadura exótica]? (y/n):");
-            y_n=keyboard.nextLine();
-            if(y_n.toLowerCase().equals("y")){
-                System.out.println("Modo Permisivo activado.");
-                permisivo=true;
-            } else {
-                System.out.println("Modo Permisivo desactivado.");
-            }
-        }
-        
-        
-        
+
         for(int i=0;i<6;i++){
             int clase;
             do{
@@ -126,9 +99,5 @@ public class Main {
         for(int i=0;i<6;i++){
             System.out.println(jugadores[i]);
         }
-    }
-    
-    public static GeneratedRaidJFrame generarRaid(int[] jugadores, boolean caos, boolean permisivo){
-        return null;
     }
 }
