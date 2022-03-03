@@ -66,83 +66,80 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="permisivo" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tituloJ5" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tituloJ6" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="nombreJ1" alignment="0" pref="104" max="32767" attributes="0"/>
+                                              <Component id="nombreJ2" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="nombreJ3" max="32767" attributes="0"/>
+                                              <Component id="nombreJ4" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="titanJ4" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cazadorJ4" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="hechiceroJ4" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="randomJ4" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="titanJ6" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="titanJ3" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cazadorJ3" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="hechiceroJ3" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="randomJ3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="titanJ2" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cazadorJ6" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cazadorJ2" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="hechiceroJ6" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="hechiceroJ2" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="randomJ6" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="randomJ2" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="titanJ5" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="titanJ1" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cazadorJ5" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cazadorJ1" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="hechiceroJ5" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="hechiceroJ1" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="randomJ5" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="randomJ1" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tituloJ1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tituloJ2" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tituloJ3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="tituloJ4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="nombreJ5" pref="104" max="32767" attributes="0"/>
+                                              <Component id="nombreJ6" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="titanJ6" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cazadorJ6" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="hechiceroJ6" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="randomJ6" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="titanJ4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cazadorJ4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="hechiceroJ4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="randomJ4" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="titanJ3" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cazadorJ3" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="hechiceroJ3" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="randomJ3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="titanJ2" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="cazadorJ2" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="hechiceroJ2" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="randomJ2" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="titanJ1" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="cazadorJ1" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="hechiceroJ1" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="randomJ1" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="titanJ5" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cazadorJ5" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="hechiceroJ5" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="randomJ5" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -176,7 +173,7 @@
                   <Component id="titanJ1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -184,7 +181,7 @@
                   <Component id="titanJ2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -192,7 +189,7 @@
                   <Component id="titanJ3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -200,7 +197,7 @@
                   <Component id="titanJ4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -208,7 +205,7 @@
                   <Component id="titanJ5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -216,7 +213,7 @@
                   <Component id="titanJ6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hechiceroJ6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="randomJ6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tituloJ6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreJ6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="generarRaid" min="-2" max="-2" attributes="0"/>
@@ -474,54 +471,6 @@
         <Property name="text" type="java.lang.String" value="Al azar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #1"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ2">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #2"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #3"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #4"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #5"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="tituloJ6">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Jugador #6"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="generarRaid">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generar Raid aleatoria"/>
@@ -529,6 +478,54 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarRaidActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nombreJ6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Jugador #6"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

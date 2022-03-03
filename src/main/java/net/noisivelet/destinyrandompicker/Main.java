@@ -16,9 +16,11 @@
  */
 package net.noisivelet.destinyrandompicker;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
 import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
 import net.noisivelet.destinyrandompicker.Data.Clase;
@@ -26,6 +28,7 @@ import net.noisivelet.destinyrandompicker.Data.Condition;
 import net.noisivelet.destinyrandompicker.Data.Datos;
 import net.noisivelet.destinyrandompicker.Data.Subclase;
 import net.noisivelet.destinyrandompicker.gui.GeneratedRaidJFrame;
+import net.noisivelet.destinyrandompicker.gui.OptionsInterface;
 
 /**
  *
@@ -34,7 +37,17 @@ import net.noisivelet.destinyrandompicker.gui.GeneratedRaidJFrame;
 public class Main {
     static Datos data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
     
-    public static GeneratedRaidJFrame generarRaid(int[] clases, boolean caos, boolean permisivo){
+    public static void main(String args[]){
+        FlatDarculaLaf.setup();
+        if(data == null){
+            JOptionPane.showInternalMessageDialog(null, "No se ha podido cargar el archivo DestinyRandomPicker.yaml necesario para el programa.\nComprueba que el archivo esté en la misma carpeta que el ejecutable .jar e inténtalo de nuevo.", "Error: Datos no encontrados", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        OptionsInterface mainFrame=new OptionsInterface();
+        mainFrame.setVisible(true);
+    }
+    
+    public static GeneratedRaidJFrame generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo){
         Random r=new Random();
         int raid=r.nextInt(data.getNumRaids());
         
@@ -44,11 +57,7 @@ public class Main {
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
 
         for(int i=0;i<6;i++){
-            int clase;
-            do{
-                System.out.println("Clase del Jugador #"+(i+1)+" (0: Hechicero, 1: Cazador, 2: Titán, 3: Al azar): ");
-                clase=keyboard.nextInt();
-            }while(clase < 0 || clase>3);
+            int clase=clases[i];
             if(clase==3)
                 clase=r.nextInt(data.getNumClases());
             Clase clase_=data.getClase(clase);
@@ -84,7 +93,7 @@ public class Main {
                 }
             }
             
-            Jugador j=new Jugador(i+1, arma, armadura, clase_, subclase_);
+            Jugador j=new Jugador(nombres[i], arma, armadura, clase_, subclase_);
             jugadores[i]=j;
         }
         
@@ -94,10 +103,12 @@ public class Main {
             }
         }
         
-        System.out.println("========= Raid aleatoria generada: ==========\n");
-        System.out.println("Raid: "+data.getRaid(raid).getNombre());
+        String resultado="========= Raid aleatoria generada: ==========\n\n";
+        resultado+="Raid: "+data.getRaid(raid).getNombre()+"\n";
         for(int i=0;i<6;i++){
-            System.out.println(jugadores[i]);
+            resultado+=jugadores[i]+"\n";
         }
+        
+        return new GeneratedRaidJFrame(resultado);
     }
 }
