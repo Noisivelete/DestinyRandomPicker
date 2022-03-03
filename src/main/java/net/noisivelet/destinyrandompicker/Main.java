@@ -25,6 +25,7 @@ import net.noisivelet.destinyrandompicker.Data.Clase;
 import net.noisivelet.destinyrandompicker.Data.Condition;
 import net.noisivelet.destinyrandompicker.Data.Datos;
 import net.noisivelet.destinyrandompicker.Data.Subclase;
+import net.noisivelet.destinyrandompicker.gui.GeneratedRaidJFrame;
 
 /**
  *
@@ -125,5 +126,9 @@ public class Main {
         for(int i=0;i<6;i++){
             System.out.println(jugadores[i]);
         }
+    }
+    
+    public static GeneratedRaidJFrame generarRaid(int[] jugadores, boolean caos, boolean permisivo){
+        return null;
     }
 }
