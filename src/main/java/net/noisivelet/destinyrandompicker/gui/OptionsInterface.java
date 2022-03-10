@@ -18,9 +18,13 @@ package net.noisivelet.destinyrandompicker.gui;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
+import net.noisivelet.destinyrandompicker.Data.Actividad;
 import net.noisivelet.destinyrandompicker.Main;
 
 /**
@@ -31,11 +35,14 @@ public class OptionsInterface extends javax.swing.JFrame {
     
     private ArrayList<ButtonGroup> clasesElegidas;
     private ArrayList<JTextField> nombresJugadores;
-    /**
-     * Creates new form OptionsInterface
-     */
-    public OptionsInterface() {
+    private List<Actividad> actividades;
+    private ArrayList<ArrayList<JComponent>> rows_jugadores;
+    
+    //Esta función es horrible pero he hecho el diseño con las herramientas de NetBeans. Lo siento.
+    public OptionsInterface(List<Actividad> actividades) {
+        this.actividades=actividades;
         initComponents();
+        
         clasesElegidas=new ArrayList<>();
         clasesElegidas.add(botonesJugador1);
         clasesElegidas.add(botonesJugador2);
@@ -51,6 +58,62 @@ public class OptionsInterface extends javax.swing.JFrame {
         nombresJugadores.add(nombreJ4);
         nombresJugadores.add(nombreJ5);
         nombresJugadores.add(nombreJ6);
+        
+        rows_jugadores=new ArrayList<>();
+        
+        ArrayList<JComponent> j1=new ArrayList<>();
+        j1.add(nombreJ1);
+        j1.add(hechiceroJ1);
+        j1.add(titanJ1);
+        j1.add(cazadorJ1);
+        j1.add(randomJ1);
+        j1.add(nombreJ1);
+        rows_jugadores.add(j1);
+        
+        ArrayList<JComponent> j2=new ArrayList<>();
+        j2.add(nombreJ2);
+        j2.add(hechiceroJ2);
+        j2.add(titanJ2);
+        j2.add(cazadorJ2);
+        j2.add(randomJ2);
+        j2.add(nombreJ2);
+        rows_jugadores.add(j2);
+        
+        ArrayList<JComponent> j3=new ArrayList<>();
+        j3.add(nombreJ3);
+        j3.add(hechiceroJ3);
+        j3.add(titanJ3);
+        j3.add(cazadorJ3);
+        j3.add(randomJ3);
+        j3.add(nombreJ3);
+        rows_jugadores.add(j3);
+        
+        ArrayList<JComponent> j4=new ArrayList<>();
+        j4.add(nombreJ4);
+        j4.add(hechiceroJ4);
+        j4.add(titanJ4);
+        j4.add(cazadorJ4);
+        j4.add(randomJ4);
+        j4.add(nombreJ4);
+        rows_jugadores.add(j4);
+        
+        ArrayList<JComponent> j5=new ArrayList<>();
+        j5.add(nombreJ5);
+        j5.add(hechiceroJ5);
+        j5.add(titanJ5);
+        j5.add(cazadorJ5);
+        j5.add(randomJ5);
+        j5.add(nombreJ5);
+        rows_jugadores.add(j5);
+        
+        ArrayList<JComponent> j6=new ArrayList<>();
+        j6.add(nombreJ6);
+        j6.add(hechiceroJ6);
+        j6.add(titanJ6);
+        j6.add(cazadorJ6);
+        j6.add(randomJ6);
+        j6.add(nombreJ6);
+        rows_jugadores.add(j6);
         
     }
     
@@ -116,6 +179,9 @@ public class OptionsInterface extends javax.swing.JFrame {
         nombreJ4 = new javax.swing.JTextField();
         nombreJ5 = new javax.swing.JTextField();
         nombreJ6 = new javax.swing.JTextField();
+        raidAleatoria = new javax.swing.JCheckBox();
+        listaRaids = new javax.swing.JComboBox<>();
+        tituloRaidEscogida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DestinyRandomPicker");
@@ -222,7 +288,7 @@ public class OptionsInterface extends javax.swing.JFrame {
         randomJ6.setSelected(true);
         randomJ6.setText("Al azar");
 
-        generarRaid.setText("Generar Raid aleatoria");
+        generarRaid.setText("Generar actividad aleatoria");
         generarRaid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generarRaidActionPerformed(evt);
@@ -247,6 +313,25 @@ public class OptionsInterface extends javax.swing.JFrame {
         nombreJ6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         nombreJ6.setText("Jugador #6");
 
+        raidAleatoria.setSelected(true);
+        raidAleatoria.setText("La actividad es aleatoria");
+        raidAleatoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raidAleatoriaActionPerformed(evt);
+            }
+        });
+
+        listaRaids.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Actividad aleatoria>" }));
+        listaRaids.setEnabled(false);
+        listaRaids.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaRaidsActionPerformed(evt);
+            }
+        });
+
+        tituloRaidEscogida.setText("Actividad escogida:");
+        tituloRaidEscogida.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,88 +340,96 @@ public class OptionsInterface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(164, 164, 164)
-                                .addComponent(generarRaid))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(tituloModos)))
+                        .addGap(15, 15, 15)
+                        .addComponent(tituloModos)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
+                            .addComponent(permisivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                             .addComponent(caos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(permisivo)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(raidAleatoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(listaRaids, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(nombreJ1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                                .addComponent(nombreJ2)
-                                                .addComponent(nombreJ3)
+                                                .addComponent(nombreJ2))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(nombreJ3, javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(nombreJ4))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(titanJ4)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(titanJ4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cazadorJ4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hechiceroJ4)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(randomJ4))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(titanJ3)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cazadorJ3)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hechiceroJ3)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(randomJ3))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(titanJ2)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(cazadorJ2)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(hechiceroJ2)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(randomJ2))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(titanJ1)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(cazadorJ1)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(hechiceroJ1)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(randomJ1)))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(nombreJ5, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                                .addComponent(nombreJ6))
-                                            .addGap(6, 6, 6)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(titanJ6)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cazadorJ6)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hechiceroJ6)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(randomJ6))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(titanJ5)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(cazadorJ5)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(hechiceroJ5)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(randomJ5))))))
-                                .addGap(0, 14, Short.MAX_VALUE)))))
+                                            .addComponent(cazadorJ4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(hechiceroJ4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(randomJ4))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(titanJ3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cazadorJ3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(hechiceroJ3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(randomJ3))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(titanJ2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cazadorJ2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(hechiceroJ2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(randomJ2))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(titanJ1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cazadorJ1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(hechiceroJ1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(randomJ1)))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(nombreJ5, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                        .addComponent(nombreJ6))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(titanJ6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cazadorJ6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(hechiceroJ6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(randomJ6))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(titanJ5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cazadorJ5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(hechiceroJ5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(randomJ5)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(tituloRaidEscogida)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(generarRaid)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,17 +440,24 @@ public class OptionsInterface extends javax.swing.JFrame {
                 .addComponent(caos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(permisivo)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(raidAleatoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listaRaids, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tituloRaidEscogida))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tituloClases)
+                .addComponent(tituloClases, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cazadorJ1)
-                    .addComponent(titanJ1)
-                    .addComponent(hechiceroJ1)
-                    .addComponent(randomJ1)
-                    .addComponent(nombreJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cazadorJ1)
+                        .addComponent(titanJ1)
+                        .addComponent(hechiceroJ1)
+                        .addComponent(randomJ1))
+                    .addComponent(nombreJ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cazadorJ2)
@@ -393,9 +493,9 @@ public class OptionsInterface extends javax.swing.JFrame {
                     .addComponent(hechiceroJ6)
                     .addComponent(randomJ6)
                     .addComponent(nombreJ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(generarRaid)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -448,9 +548,45 @@ public class OptionsInterface extends javax.swing.JFrame {
         boolean modoCaos=caos.isSelected();
         boolean modoPermisivo=permisivo.isSelected();
         
-        GeneratedRaidJFrame resultado=Main.generarRaid(nombres, clases, modoCaos, modoPermisivo);
+        //Si la actividad no es aleatoria, escogerla ahora:
+        Actividad actividadElegida=raidAleatoria.isSelected()? null : actividades.get(listaRaids.getSelectedIndex());
+        GeneratedRaidJFrame resultado=Main.generarRaid(nombres, clases, modoCaos, modoPermisivo, actividadElegida);
         resultado.setVisible(true);
     }//GEN-LAST:event_generarRaidActionPerformed
+
+    private void raidAleatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raidAleatoriaActionPerformed
+        listaRaids.setEnabled(!listaRaids.isEnabled());
+        tituloRaidEscogida.setEnabled(!tituloRaidEscogida.isEnabled());
+        if(listaRaids.isEnabled()){
+            String[] strings=new String[actividades.size()];
+            int i=0;
+            for(Actividad a : actividades){
+                strings[i++]=a.getNombre();
+            }
+            listaRaids.setModel(new DefaultComboBoxModel<>(strings));
+        } else {
+            listaRaids.setModel(new DefaultComboBoxModel<>(new String[]{"<Actividad aleatoria>"}));
+        }
+    }//GEN-LAST:event_raidAleatoriaActionPerformed
+
+    private void listaRaidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaRaidsActionPerformed
+        int index=listaRaids.getSelectedIndex();
+        Actividad a=actividades.get(index);
+        int i=0;
+        while(i<a.getNumero_jugadores()){
+            for(JComponent c : rows_jugadores.get(i)){
+                c.setEnabled(true);
+                c.setVisible(true);
+            }
+            i++;
+        }
+        for(;i<6;i++){
+            for(JComponent c : rows_jugadores.get(i)){
+                c.setEnabled(false);
+                c.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_listaRaidsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup botonesJugador1;
@@ -474,6 +610,7 @@ public class OptionsInterface extends javax.swing.JFrame {
     private javax.swing.JRadioButton hechiceroJ5;
     private javax.swing.JRadioButton hechiceroJ6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox<String> listaRaids;
     private javax.swing.JTextField nombreJ1;
     private javax.swing.JTextField nombreJ2;
     private javax.swing.JTextField nombreJ3;
@@ -481,6 +618,7 @@ public class OptionsInterface extends javax.swing.JFrame {
     private javax.swing.JTextField nombreJ5;
     private javax.swing.JTextField nombreJ6;
     private javax.swing.JCheckBox permisivo;
+    private javax.swing.JCheckBox raidAleatoria;
     private javax.swing.JRadioButton randomJ1;
     private javax.swing.JRadioButton randomJ2;
     private javax.swing.JRadioButton randomJ3;
@@ -495,5 +633,6 @@ public class OptionsInterface extends javax.swing.JFrame {
     private javax.swing.JRadioButton titanJ6;
     private javax.swing.JLabel tituloClases;
     private javax.swing.JLabel tituloModos;
+    private javax.swing.JLabel tituloRaidEscogida;
     // End of variables declaration//GEN-END:variables
 }

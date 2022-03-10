@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import net.noisivelet.destinyrandompicker.Data.Actividad;
 import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
 import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
 import net.noisivelet.destinyrandompicker.Data.Clase;
@@ -43,20 +44,24 @@ public class Main {
             JOptionPane.showInternalMessageDialog(null, "No se ha podido cargar el archivo DestinyRandomPicker.yaml necesario para el programa.\nComprueba que el archivo esté en la misma carpeta que el ejecutable .jar e inténtalo de nuevo.", "Error: Datos no encontrados", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        OptionsInterface mainFrame=new OptionsInterface();
+        OptionsInterface mainFrame=new OptionsInterface(data.getActividades());
         mainFrame.setVisible(true);
     }
     
-    public static GeneratedRaidJFrame generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo){
+    public static GeneratedRaidJFrame generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad){
+        int raid;
         Random r=new Random();
-        int raid=r.nextInt(data.getNumRaids());
+        if(actividad == null){
+            raid=r.nextInt(data.getNumActividades());
+        } else {
+            raid=actividad.getId();
+        }
         
-        Jugador[] jugadores=new Jugador[6];
-        Scanner keyboard = new Scanner(System.in);
+        Actividad a=data.getActividad(raid);
+        Jugador[] jugadores=new Jugador[a.getNumero_jugadores()];
         
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
-
-        for(int i=0;i<6;i++){
+        for(int i=0;i<a.getNumero_jugadores();i++){
             int clase=clases[i];
             if(clase==3)
                 clase=r.nextInt(data.getNumClases());
@@ -103,9 +108,9 @@ public class Main {
             }
         }
         
-        String resultado="========= Raid aleatoria generada: ==========\n\n";
-        resultado+="Raid: "+data.getRaid(raid).getNombre()+"\n";
-        for(int i=0;i<6;i++){
+        String resultado="========= Actividad aleatoria generada: ==========\n\n";
+        resultado+="Actividad: "+a.getNombre()+"\n";
+        for(int i=0;i<a.getNumero_jugadores();i++){
             resultado+=jugadores[i]+"\n";
         }
         
