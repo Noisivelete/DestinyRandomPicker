@@ -1572,16 +1572,28 @@ armas:
   elemento: "SOLAR"
   esEspecial: false
   activada: true
-raids:
+actividades:
 - id: 0
-  nombre: "Cripta de la Piedra Profunda"
+  nombre: "Raid: Cripta de la Piedra Profunda"
   posibilidad: 1.0
+  numero_jugadores: 6
 - id: 1
-  nombre: "Último Deseo"
+  nombre: "Raid: Último Deseo"
   posibilidad: 1.0
+  numero_jugadores: 6
 - id: 2
-  nombre: "Jardín de la Salvación"
+  nombre: "Raid: Jardín de la Salvación"
   posibilidad: 1.0
+  numero_jugadores: 6
 - id: 3
-  nombre: "Cámara de Cristal"
+  nombre: "Raid: Cámara de Cristal"
   posibilidad: 1.0
+  numero_jugadores: 6
+- id: 4
+  nombre: "Raid: Juramento del Discípulo"
+  posibilidad: 1.0
+  numero_jugadores: 6
+- id: 5
+  nombre: "Mazmorra: Garras de la avaricia"
+  posibilidad: 1.0
+  numero_jugadores: 3

@@ -16,65 +16,80 @@
  */
 package net.noisivelet.destinyrandompicker;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+import net.noisivelet.destinyrandompicker.Data.Actividad;
 import net.noisivelet.destinyrandompicker.Data.ArmaExótica;
 import net.noisivelet.destinyrandompicker.Data.ArmaduraExótica;
 import net.noisivelet.destinyrandompicker.Data.Clase;
 import net.noisivelet.destinyrandompicker.Data.Condition;
 import net.noisivelet.destinyrandompicker.Data.Datos;
 import net.noisivelet.destinyrandompicker.Data.Subclase;
+import net.noisivelet.destinyrandompicker.gui.GeneratedRaidJFrame;
+import net.noisivelet.destinyrandompicker.gui.OptionsInterface;
 
 /**
  *
  * @author Francis
  */
 public class Main {
-    public static void main(String... args){
-        String yaml_location=args.length>0?args[0]:"DestinyRandomPicker.yaml";
-        Datos data=YAMLUtils.getYaml(yaml_location);
+    public static Datos data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
+    
+    public static void main(String args[]){
+        FlatDarculaLaf.setup();
         if(data == null){
-            System.out.println("Error cargando el archivo YAML. No se puede continuar.");
+            JOptionPane.showInternalMessageDialog(null, "No se ha podido cargar el archivo DestinyRandomPicker.yaml necesario para el programa.\nComprueba que el archivo esté en la misma carpeta que el ejecutable .jar e inténtalo de nuevo.", "Error: Datos no encontrados", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Random r=new Random();
-        int raid=r.nextInt(data.getNumRaids());
+        OptionsInterface mainFrame=new OptionsInterface(data.getActividades());
+        mainFrame.setVisible(true);
+    }
+    
+    public static GeneratedRaidJFrame generarRaidJFrame(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad){
+        ActividadGenerada actividadGenerada=generarRaid(nombres, clases, caos, permisivo, actividad, actividad != null?actividad.getNumero_jugadores():nombres.length);
         
-        Jugador[] jugadores=new Jugador[6];
-        Scanner keyboard = new Scanner(System.in);
-        
-        ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
-        boolean caos=false;
-        boolean permisivo=false;
-        String y_n="";
-        System.out.println("¿Activar modo Caos [Cualquier exótico, incluso si no da beneficio, puede salir para cualquier subclase y armadura]? (y/n):");
-        y_n=keyboard.nextLine();
-        if(y_n.toLowerCase().equals("y")){
-            System.out.println("Modo Caos activado. Modo Permisivo activado.");
-            caos=true;
-            permisivo=true;
-        } else {
-            System.out.println("Modo Caos desactivado.");
-            y_n="";
-            System.out.println("¿Activar modo Permisivo [Cualquier arma exótica, incluso si no la beneficia, puede salir para cualquier armadura exótica]? (y/n):");
-            y_n=keyboard.nextLine();
-            if(y_n.toLowerCase().equals("y")){
-                System.out.println("Modo Permisivo activado.");
-                permisivo=true;
-            } else {
-                System.out.println("Modo Permisivo desactivado.");
-            }
+        Actividad ag=actividadGenerada.getActividad();
+        Jugador[] jugadores=actividadGenerada.getJugadores();
+        String resultado="========= Actividad aleatoria generada: ==========\n\n";
+        resultado+="Actividad: "+ag.getNombre()+"\n";
+        for(int i=0;i<ag.getNumero_jugadores();i++){
+            resultado+=jugadores[i]+"\n";
         }
         
-        
-        
-        for(int i=0;i<6;i++){
-            int clase;
+        return new GeneratedRaidJFrame(resultado);
+    }
+    
+    /**
+     * Genera una actividad aleatoria
+     * @param nombres Nombres de los jugadores que componen la actividad
+     * @param clases Clases de los jugadores que componen la actividad
+     * @param caos Si se activa el Modo Caos
+     * @param permisivo Si se activa el Modo Permisivo
+     * @param actividad La actividad, o nulo si se quiere una actividad aleatoria
+     * @param num_participantes El número de participantes que debe tener la actividad (Solo si la actividad no está escogida ya)
+     * @return Una clase ActividadGenerada con la información de cada persona y la actividad elegida.
+     */
+    public static ActividadGenerada generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad, int num_participantes){
+        int raid;
+        Random r=new Random();
+        Actividad a;
+        if(actividad == null){
             do{
-                System.out.println("Clase del Jugador #"+(i+1)+" (0: Hechicero, 1: Cazador, 2: Titán, 3: Al azar): ");
-                clase=keyboard.nextInt();
-            }while(clase < 0 || clase>3);
+                raid=r.nextInt(data.getNumActividades());
+                a=data.getActividad(raid);
+            } while(a.getNumero_jugadores() != num_participantes && nombres.length != 1);
+        } else {
+            a=actividad;
+        }
+        
+        Jugador[] jugadores=new Jugador[nombres.length];
+        
+        ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
+        for(int i=0;i<nombres.length;i++){
+            int clase=clases[i];
             if(clase==3)
                 clase=r.nextInt(data.getNumClases());
             Clase clase_=data.getClase(clase);
@@ -110,20 +125,20 @@ public class Main {
                 }
             }
             
-            Jugador j=new Jugador(i+1, arma, armadura, clase_, subclase_);
+            Jugador j=new Jugador(nombres[i], arma, armadura, clase_, subclase_);
             jugadores[i]=j;
         }
         
         if(armaEspecial != null){
-            for(Jugador j: jugadores){
-                j.arma=armaEspecial;
-            }
+                for(Jugador j: jugadores){
+                    j.arma=armaEspecial;
+                }   
         }
         
-        System.out.println("========= Raid aleatoria generada: ==========\n");
-        System.out.println("Raid: "+data.getRaid(raid).getNombre());
-        for(int i=0;i<6;i++){
-            System.out.println(jugadores[i]);
-        }
+        return new ActividadGenerada(jugadores,a);
+    }
+
+    public static void recargarYAML() {
+        data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
     }
 }

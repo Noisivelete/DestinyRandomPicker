@@ -26,21 +26,21 @@ import net.noisivelet.destinyrandompicker.Data.ArmaExótica.Slot;
  *
  * @author Francis
  */
-@JsonIgnoreProperties({ "numClases", "numRaids", "numArmas" })
+@JsonIgnoreProperties({ "numClases", "numActividades", "numArmas" })
 public class Datos {
     private List<Clase> clases;
     private List<ArmaExótica> armas;
-    private List<Raid> raids;
+    private List<Actividad> actividades;
     
     public Datos(){
         clases=null;
         armas=null;
-        raids=null;
+        actividades=null;
     }
-    public Datos(List<Raid> raids, List<Clase> clases, List<ArmaExótica> armas) {
+    public Datos(List<Actividad> actividades, List<Clase> clases, List<ArmaExótica> armas) {
         this.clases = clases;
         this.armas = armas;
-        this.raids = raids;
+        this.actividades = actividades;
     }
 
     public void setClases(List<Clase> clases) {
@@ -51,8 +51,8 @@ public class Datos {
         this.armas = armas;
     }
 
-    public void setRaids(List<Raid> raids) {
-        this.raids = raids;
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
     }
 
     public List<Clase> getClases() {
@@ -63,16 +63,16 @@ public class Datos {
         return armas;
     }
 
-    public List<Raid> getRaids() {
-        return raids;
+    public List<Actividad> getActividades() {
+        return actividades;
     }
     
-    public Raid getRaid(int index){
-        return raids.get(index);
+    public Actividad getActividad(int index){
+        return actividades.get(index);
     }
     
-    public int getNumRaids(){
-        return raids.size();
+    public int getNumActividades(){
+        return actividades.size();
     }
     
     public int getNumArmas(){

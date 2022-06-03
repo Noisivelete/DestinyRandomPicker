@@ -26,14 +26,14 @@ import net.noisivelet.destinyrandompicker.Data.Subclase;
  * @author Francis
  */
 public class Jugador {
-    public int id;
+    public String nombre;
     public ArmaExótica arma;
     public ArmaduraExótica armadura;
     public Clase clase;
     public Subclase subclase;
 
-    public Jugador(int id, ArmaExótica arma, ArmaduraExótica armadura, Clase clase, Subclase subclase) {
-        this.id = id;
+    public Jugador(String nombre, ArmaExótica arma, ArmaduraExótica armadura, Clase clase, Subclase subclase) {
+        this.nombre = nombre;
         this.arma = arma;
         this.armadura = armadura;
         this.clase = clase;
@@ -42,7 +42,7 @@ public class Jugador {
     
     @Override
     public String toString(){
-        String resultado="Jugador #"+id+":\n"
+        String resultado=nombre+":\n"
                 + "\tClase: "+clase.getNombre()+"\n";
         String prefijo_subclase=subclase.getPrefix() == null? clase.getPrefijo():subclase.getPrefix();
         resultado+="\tSubclase: "+prefijo_subclase+" "+subclase.getNombre()+"\n"
