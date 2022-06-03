@@ -81,5 +81,10 @@ public class Actividad {
         this.numero_jugadores = numero_jugadores;
     }
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
+    
     
 }

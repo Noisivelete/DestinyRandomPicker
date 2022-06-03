@@ -36,7 +36,7 @@ import net.noisivelet.destinyrandompicker.gui.OptionsInterface;
  * @author Francis
  */
 public class Main {
-    static Datos data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
+    public static Datos data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
     
     public static void main(String args[]){
         FlatDarculaLaf.setup();
@@ -48,20 +48,47 @@ public class Main {
         mainFrame.setVisible(true);
     }
     
-    public static GeneratedRaidJFrame generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad){
-        int raid;
-        Random r=new Random();
-        if(actividad == null){
-            raid=r.nextInt(data.getNumActividades());
-        } else {
-            raid=actividad.getId();
+    public static GeneratedRaidJFrame generarRaidJFrame(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad){
+        ActividadGenerada actividadGenerada=generarRaid(nombres, clases, caos, permisivo, actividad, actividad != null?actividad.getNumero_jugadores():nombres.length);
+        
+        Actividad ag=actividadGenerada.getActividad();
+        Jugador[] jugadores=actividadGenerada.getJugadores();
+        String resultado="========= Actividad aleatoria generada: ==========\n\n";
+        resultado+="Actividad: "+ag.getNombre()+"\n";
+        for(int i=0;i<ag.getNumero_jugadores();i++){
+            resultado+=jugadores[i]+"\n";
         }
         
-        Actividad a=data.getActividad(raid);
-        Jugador[] jugadores=new Jugador[a.getNumero_jugadores()];
+        return new GeneratedRaidJFrame(resultado);
+    }
+    
+    /**
+     * Genera una actividad aleatoria
+     * @param nombres Nombres de los jugadores que componen la actividad
+     * @param clases Clases de los jugadores que componen la actividad
+     * @param caos Si se activa el Modo Caos
+     * @param permisivo Si se activa el Modo Permisivo
+     * @param actividad La actividad, o nulo si se quiere una actividad aleatoria
+     * @param num_participantes El número de participantes que debe tener la actividad (Solo si la actividad no está escogida ya)
+     * @return Una clase ActividadGenerada con la información de cada persona y la actividad elegida.
+     */
+    public static ActividadGenerada generarRaid(String[] nombres, int[] clases, boolean caos, boolean permisivo, Actividad actividad, int num_participantes){
+        int raid;
+        Random r=new Random();
+        Actividad a;
+        if(actividad == null){
+            do{
+                raid=r.nextInt(data.getNumActividades());
+                a=data.getActividad(raid);
+            } while(a.getNumero_jugadores() != num_participantes && nombres.length != 1);
+        } else {
+            a=actividad;
+        }
+        
+        Jugador[] jugadores=new Jugador[nombres.length];
         
         ArmaExótica armaEspecial=null; //Arma especial, si hay alguna, para asignar a todos los miembros del equipo.
-        for(int i=0;i<a.getNumero_jugadores();i++){
+        for(int i=0;i<nombres.length;i++){
             int clase=clases[i];
             if(clase==3)
                 clase=r.nextInt(data.getNumClases());
@@ -103,17 +130,15 @@ public class Main {
         }
         
         if(armaEspecial != null){
-            for(Jugador j: jugadores){
-                j.arma=armaEspecial;
-            }
+                for(Jugador j: jugadores){
+                    j.arma=armaEspecial;
+                }   
         }
         
-        String resultado="========= Actividad aleatoria generada: ==========\n\n";
-        resultado+="Actividad: "+a.getNombre()+"\n";
-        for(int i=0;i<a.getNumero_jugadores();i++){
-            resultado+=jugadores[i]+"\n";
-        }
-        
-        return new GeneratedRaidJFrame(resultado);
+        return new ActividadGenerada(jugadores,a);
+    }
+
+    public static void recargarYAML() {
+        data=YAMLUtils.getYaml("DestinyRandomPicker.yaml");
     }
 }

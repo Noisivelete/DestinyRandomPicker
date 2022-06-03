@@ -550,7 +550,7 @@ public class OptionsInterface extends javax.swing.JFrame {
         
         //Si la actividad no es aleatoria, escogerla ahora:
         Actividad actividadElegida=raidAleatoria.isSelected()? null : actividades.get(listaRaids.getSelectedIndex());
-        GeneratedRaidJFrame resultado=Main.generarRaid(nombres, clases, modoCaos, modoPermisivo, actividadElegida);
+        GeneratedRaidJFrame resultado=Main.generarRaidJFrame(nombres, clases, modoCaos, modoPermisivo, actividadElegida);
         resultado.setVisible(true);
     }//GEN-LAST:event_generarRaidActionPerformed
 
